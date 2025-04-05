@@ -1,10 +1,9 @@
 fastapi
-uvicorn
+uvicorn[standard]
 selenium
 bs4
 groq
 pydantic
-python-multipart
 email-validator
+python-dotenv
 webdriver-manager
-smtplib
