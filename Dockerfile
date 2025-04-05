@@ -14,12 +14,13 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# Install ChromeDriver manually (must match Chrome version installed)
-RUN wget -q "https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip" \
-    && unzip chromedriver_linux64.zip \
-    && mv chromedriver /usr/bin/chromedriver \
+# Install ChromeDriver 135 (matches Chrome 135 installed above)
+RUN wget -q "https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.52/linux64/chromedriver-linux64.zip" \
+    && unzip chromedriver-linux64.zip \
+    && mv chromedriver-linux64/chromedriver /usr/bin/chromedriver \
     && chmod +x /usr/bin/chromedriver \
-    && rm chromedriver_linux64.zip
+    && rm -rf chromedriver-linux64 chromedriver-linux64.zip
+
 
 # Set working directory
 WORKDIR /app
