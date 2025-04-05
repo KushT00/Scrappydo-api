@@ -16,7 +16,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-
+print("PORT from environment:", os.environ.get("PORT"))
 # Email configuration - you should set these as environment variables
 # Email configuration - direct values
 EMAIL_HOST = "smtp.gmail.com"       # Correct for Gmail
