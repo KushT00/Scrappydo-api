@@ -58,16 +58,18 @@ def scrape_website(url):
     try:
         options = Options()
         options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
         options.add_argument("--disable-gpu")
         options.add_argument("--disable-dev-shm-usage")
-        options.binary_location = "/usr/bin/chromium"
+        options.add_argument("--disable-extensions")
         
-        # Automatically install and use the correct ChromeDriver
-        service = Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
-
-
-
+        # For Railway deployment, we need to use a specific path
+        # Remove the binary_location line since we'll install Chrome in the Dockerfile
+        # options.binary_location = "/usr/bin/chromium"
+        
+        # Use ChromeDriver directly from path rather than using webdriver_manager
+        driver = webdriver.Chrome(options=options)
+        
         driver.get(url)
         time.sleep(3)  # Allow some time for JavaScript to load
         page_source = driver.page_source
