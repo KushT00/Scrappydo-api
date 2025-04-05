@@ -63,11 +63,7 @@ def scrape_website(url):
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-extensions")
         
-        # For Railway deployment, we need to use a specific path
-        # Remove the binary_location line since we'll install Chrome in the Dockerfile
-        # options.binary_location = "/usr/bin/chromium"
-        
-        # Use ChromeDriver directly from path rather than using webdriver_manager
+        # Simple Chrome initialization without webdriver_manager
         driver = webdriver.Chrome(options=options)
         
         driver.get(url)
@@ -94,7 +90,6 @@ def scrape_website(url):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error scraping website: {str(e)}")
-
 # API route to scrape website
 @app.post("/scrape")
 def scrape_endpoint(request: ScrapeRequest):
