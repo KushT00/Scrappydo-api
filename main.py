@@ -63,9 +63,9 @@ def scrape_website(url):
         options.binary_location = "/usr/bin/chromium"
         
         # Automatically install and use the correct ChromeDriver
-        driver = webdriver.Chrome(
-            options=options,
-            executable_path=ChromeDriverManager().install())
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+
 
 
         driver.get(url)
