@@ -2,7 +2,7 @@ fastapi==0.100.0
 uvicorn==0.22.0
 selenium==4.10.0
 beautifulsoup4==4.12.2
-groq==0.4.1
+groq>=0.5.0        # ✅ Upgrade to latest (fixes internal bugs)
 pydantic==2.0.3
 pydantic[email]==2.0.3
 webdriver-manager==3.8.6
